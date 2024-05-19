@@ -1,5 +1,13 @@
 <?php
+session_start();
 $url_base="http://localhost/app/";
+
+if(!isset($_SESSION['usuario'])){
+    header("Location:".$url_base."login.php");
+}
+
+
+
 ?>  
 
 <!doctype html><!--CABEZARA-->
@@ -52,7 +60,7 @@ $url_base="http://localhost/app/";
                     <a class="nav-link" href="<?php echo $url_base;?>secciones/usuarios/">Usuarios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $url_base;?>secciones/empleados/">Cerrar sesión</a>
+                    <a class="nav-link" href="<?php echo $url_base;?>cerrar.php">Cerrar sesión</a>
                 </li>
             </ul>
         </nav>

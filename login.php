@@ -1,6 +1,31 @@
 <?php
-print_r($_POST);
+session_start();
+if($_POST){
+    include("./bd.php");
+    
+    $sentencia=$conexion->prepare("SELECT *,count(*) as n_usuario
+    FROM `tbl_usuarios` 
+    WHERE usuario=:usuario 
+    AND password=:password
+    ");
 
+    $usuario=$_POST["usuario"];
+    $contrasenia=$_POST["contrasenia"];
+
+    $sentencia->bindParam(":usuario",$usuario);
+    $sentencia->bindParam(":password",$contrasenia);
+    $sentencia->execute();
+
+    $registro=$sentencia->fetch(PDO::FETCH_LAZY);
+    if($registro["n_usuario"]>0){
+
+        $_SESSION['usuario']=$registro['usuario'];
+        $_SESSION['logueado']=true;
+        header("location:index.php");
+    }else{
+    $mensaje="Error: El Usuario y Contraseña son incorrectos";
+    }
+}
 ?>
 
 <!doctype html>
@@ -40,6 +65,13 @@ print_r($_POST);
                         Login
                     </div>
                     <div class="card-body">
+                        
+                    <?php if(isset($mensaje)){ ?>
+                        <div class="alert alert-danger"role="alert">
+                            <strong><?php echo $mensaje;?></strong>
+                        </div>
+                    <?php }?>
+
                         <form action="" method="post">
                         <div class="mb-3">
                             <label for="usuario" class="form-label">Usuario</label>
@@ -48,9 +80,9 @@ print_r($_POST);
                         </div>
                         
                         <div class="mb-3">
-                            <label for="contraseña" class="form-label">Contraseña:</label>
+                            <label for="contrasenia" class="form-label">Contraseña:</label>
                             <input type="password"
-                                class="form-control" name="contraseña" id="contraseña" aria-describedby="helpId" placeholder="Escriba su Contraseña"/>
+                                class="form-control" name="contrasenia" id="contrasenia" aria-describedby="helpId" placeholder="Escriba su Contraseña"/>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Entrar al Sistema</button>
