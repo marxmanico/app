@@ -1,0 +1,6 @@
+paginas de librerias para nuestra web
+
+https://datatables.net/manual/installation
+https://releases.jquery.com/
+https://datatables.net/examples/advanced_init/language_file.html
+https://github.com/dompdf/dompdf/releases
