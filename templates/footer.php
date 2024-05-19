@@ -31,5 +31,20 @@ $("#tabla_id").DataTable({
 });
 });
 </script>
+
+<script>
+function borrar(id){
+    Swal.fire({
+        title: "¿Desea borrar el registro?",
+        showCancelButton: true,
+        confirmButtonText: "Si, Borrar",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location="index.php?txtID="+id;
+        }
+})
+}
+</script>
+
 </body>
 </html>

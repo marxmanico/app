@@ -50,7 +50,8 @@ if($_POST){
 
 
     $sentencia->execute();
-    header("Location:index.php");
+    $mensaje="Registro Agregado";
+    header("Location:index.php?mensaje=".$mensaje);
 
 
 

@@ -57,3 +57,8 @@ $url_base="http://localhost/app/";
             </ul>
         </nav>
     <main class="container">
+    <?php if(isset($_GET['mensaje'])){?>
+    <script>
+    Swal.fire({icon:"success",title:"<?php echo $_GET['mensaje']; ?>"});
+    </script>    
+    <?php }?>

@@ -33,7 +33,8 @@ if(isset($_GET['txtID'] )){
     $sentencia=$conexion->prepare("DELETE FROM tbl_empleados WHERE id=:id");
     $sentencia->bindParam(":id",$txtID);
     $sentencia->execute();
-    header("Location:index.php");
+    $mensaje="Registro Eliminado";
+    header("Location:index.php?mensaje=".$mensaje);
     
 
 
@@ -108,7 +109,7 @@ $lista_tbl_empleados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
                 <td>
                     <a href="carta_recomendacion.php?txtID=<?php echo $registro['id']?>" class="btn btn-primary" role="button" target="_blank">Carta</a>
                     <a class="btn btn-info" href="editar.php?txtID=<?php echo $registro['id']?>" role="button">Editar</a>
-                    <a class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id']?>" role="button">Eliminar</a>
+                    <a class="btn btn-danger" href="javascript:borrar(<?php echo $registro['id']; ?>);" role="button">Eliminar</a>
                     
                 </td>
             </tr>

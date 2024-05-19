@@ -6,7 +6,8 @@ if(isset($_GET['txtID'] )){
     $sentencia=$conexion->prepare("DELETE FROM tbl_usuarios WHERE id=:id");
     $sentencia->bindParam(":id",$txtID);
     $sentencia->execute();
-    header("Location:index.php");
+    $mensaje="Registro Eliminado";
+    header("Location:index.php?mensaje=".$mensaje);
 }
 //FIN Codigo para que el boton eliminar funcione
 
@@ -64,7 +65,7 @@ $lista_tbl_usuarios=$sentencia->fetchAll(PDO::FETCH_ASSOC);
                 <td><?php echo $registro['correo'];?></td>
                 <td>
                 <a class="btn btn-info" href="editar.php?txtID=<?php echo $registro['id']?>" role="button">Editar</a>
-                <a class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id']?>" role="button">Eliminar</a>
+                <a class="btn btn-danger" href="javascript:borrar(<?php echo $registro['id']; ?>);" role="button">Eliminar</a>
                 </td>
             </tr>
         <?php }?>

@@ -16,7 +16,8 @@ if($_POST){
     $sentencia->bindParam(":password",$password);
     $sentencia->bindParam(":correo",$correo);
     $sentencia->execute();
-    header("Location:index.php");
+    $mensaje="Registro Agregado";
+    header("Location:index.php?mensaje=".$mensaje);
 
 }
 
