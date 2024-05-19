@@ -21,7 +21,7 @@ if($_POST){
 
         $_SESSION['usuario']=$registro['usuario'];
         $_SESSION['logueado']=true;
-        header("location:index.php");
+        header("Location:index.php");
     }else{
     $mensaje="Error: El Usuario y Contraseña son incorrectos";
     }
